@@ -207,7 +207,9 @@ function App() {
       return (
         <>
           {/* todo */}
-          <button onClick={leaveRoom}>退出房间</button>
+          <button onClick={leaveRoom} style={{ marginBottom: 8 }}>
+            退出房间
+          </button>
           {renderCard()}
         </>
       );
