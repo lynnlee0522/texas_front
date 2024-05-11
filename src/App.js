@@ -23,17 +23,24 @@ function App() {
   }, []);
 
   useEffect(() => {
-    socket.on("licensing", getCardInfo);
-    socket.on("licensingTable", getCardInfo);
+    socket.on("flop", getflopInfo);
+    socket.on("flopTable", getCardInfo);
     socket.on("turn", getCardInfo);
     socket.on("river", getCardInfo);
 
     return () => {
-      socket.off("licensing", getCardInfo);
-      socket.off("licensingTable", getCardInfo);
+      socket.off("flop", getflopInfo);
+      socket.off("flopTable", getCardInfo);
       socket.off("river", getCardInfo);
     };
   }, []);
+
+  const getflopInfo = (cardInfo) => {
+    const { step, clientCard } = cardInfo;
+    step && setStep(step);
+    clientCard && setClientCard(clientCard);
+    setCardTable(undefined);
+  };
 
   const getCardInfo = (cardInfo) => {
     const { step, clientCard, cardTable } = cardInfo;
@@ -95,12 +102,12 @@ function App() {
     socket.emit("restart");
   };
 
-  const handleLicensing = () => {
-    socket.emit("licensing", roomName);
+  const handleFlop = () => {
+    socket.emit("flop", roomName);
   };
 
   const handleGetTable = () => {
-    socket.emit("licensingTable");
+    socket.emit("flopTable");
   };
 
   const handleTurnCard = () => {
@@ -134,17 +141,17 @@ function App() {
       case "start":
         return (
           <div>
-            <button onClick={handleLicensing}>发牌</button>
+            <button onClick={handleFlop}>发牌</button>
           </div>
         );
-      case "licensing":
+      case "flop":
         return (
           <div>
             {commonRender}
             <button onClick={handleGetTable}>看牌</button>
           </div>
         );
-      case "licensingTable":
+      case "flopTable":
         return (
           <div>
             {commonRender}
