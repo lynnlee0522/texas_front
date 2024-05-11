@@ -218,6 +218,8 @@ function App() {
     <div className="App">
       {!isConnected ? (
         <button onClick={connect}>进入游戏</button>
+      ) : inRoom ? (
+        ""
       ) : (
         <button onClick={disconnect}>退出游戏</button>
       )}
