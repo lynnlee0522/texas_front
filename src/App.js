@@ -223,7 +223,9 @@ function App() {
       ) : inRoom ? (
         ""
       ) : (
-        <button onClick={disconnect}>退出游戏</button>
+        <button onClick={disconnect} style={{ marginBottom: 8 }}>
+          退出游戏
+        </button>
       )}
       {renderRoom()}
     </div>
