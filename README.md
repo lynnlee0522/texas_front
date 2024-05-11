@@ -18,4 +18,7 @@ npm run start
 ## 其他
 1. 可以通过浏览器打开多个tab，来模拟多名玩家
    
-
+## 运行截图
+![mobile demo flop](img/mobile-demo-flop.jpg)
+![mobile demo river](img/mobile-demo-river.jpg)
+![mobile demo restart](img/mobile-demo-restart.jpg)
