@@ -9,6 +9,7 @@ function App() {
   const [step, setStep] = useState("start");
   const [clientCard, setClientCard] = useState();
   const [cardTable, setCardTable] = useState();
+  const [roomName, setRoomName] = useState("1234");
 
   useEffect(() => {
     socket.on("connect", onConnect);
@@ -63,14 +64,14 @@ function App() {
   };
 
   const joinRoom = () => {
-    socket.emit("joinRoom", "room1", (roomName) => {
+    socket.emit("joinRoom", roomName, (roomName) => {
       console.log(`您已经进入${roomName}`);
       setInRoom(true);
     });
   };
 
   const leaveRoom = () => {
-    socket.emit("leaveRoom", "room1", (roomName) => {
+    socket.emit("leaveRoom", roomName, (roomName) => {
       console.log(`您已经离开${roomName}`);
       setInRoom(false);
     });
@@ -95,7 +96,7 @@ function App() {
   };
 
   const handleLicensing = () => {
-    socket.emit("licensing", "room1");
+    socket.emit("licensing", roomName);
   };
 
   const handleGetTable = () => {
@@ -176,11 +177,22 @@ function App() {
 
     if (!inRoom) {
       return (
-        <>
-          <button onClick={joinRoom}>加入房间</button>
+        <div>
+          <label for="roomname">房间号</label>
+          <input
+            type="text"
+            name="roomname"
+            id="roomname"
+            value={roomName}
+            placeholder="input room name here"
+            onChange={(e) => {
+              setRoomName(e.target.value);
+            }}
+          />
+          <button onClick={joinRoom}>创建或加入房间</button>
           {/* <button onClick={createRoom}>创建房间</button> */}
           {/* <FindRooms /> */}
-        </>
+        </div>
       );
     } else {
       return (
