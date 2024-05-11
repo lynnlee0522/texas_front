@@ -36,6 +36,7 @@ function App() {
   }, []);
 
   const getflopInfo = (cardInfo) => {
+    console.log("---here---", cardInfo);
     const { step, clientCard } = cardInfo;
     step && setStep(step);
     clientCard && setClientCard(clientCard);
@@ -80,6 +81,7 @@ function App() {
   const leaveRoom = () => {
     socket.emit("leaveRoom", roomName, (roomName) => {
       console.log(`您已经离开${roomName}`);
+      init();
       setInRoom(false);
     });
   };
