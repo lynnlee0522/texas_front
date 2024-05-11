@@ -9,7 +9,7 @@ function App() {
   const [step, setStep] = useState("start");
   const [clientCard, setClientCard] = useState();
   const [cardTable, setCardTable] = useState();
-  const [roomName, setRoomName] = useState("1234");
+  const [roomName, setRoomName] = useState(btoa(+new Date()).slice(-6, -2));
 
   useEffect(() => {
     socket.on("connect", onConnect);
