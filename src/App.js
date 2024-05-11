@@ -13,6 +13,7 @@ function App() {
   useEffect(() => {
     socket.on("connect", onConnect);
     socket.on("disconnect", onDisconnect);
+    socket.on("connect_error", onConnectError);
 
     return () => {
       socket.off("connect", onConnect);
@@ -41,7 +42,12 @@ function App() {
   };
 
   const onConnect = () => {
+    console.log("---连接ws成功---");
     setIsConnected(true);
+  };
+
+  const onConnectError = (err) => {
+    console.log("---连接失败---", err);
   };
 
   const onDisconnect = () => {
