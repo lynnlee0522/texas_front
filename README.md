@@ -7,9 +7,9 @@
 访问地址: https://texas-front.pages.dev/
 
 ## 本地项目启动
-git clone 
-npm install
-npm run start
+1. git clone 
+2. npm install
+3. npm run start
 
 ## 玩法
 1. 进入游戏 - 创建或加入房间  
